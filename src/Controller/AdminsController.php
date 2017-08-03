@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Admins Controller
@@ -12,7 +13,48 @@ use App\Controller\AppController;
  */
 class AdminsController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['login','add']);
+    }
+    
+    public function login()
+    {
+        if($this->request->session()->read('Auth.User')==null){
+            if ($this->request->is('post')) {
+                $user = $this->Auth->identify();
+                // pr($this->Auth);
+                if ($user) {
+                    $this->Auth->setUser($user);
+                    $this->Flash->success('Successfully Loggedin !!', [
+                        'params' => [
+                            'class' => 'alert alert-success'
+                        ]
+                    ]);
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
+                $this->Flash->error('Invalid username or password, try again',[
+                    'params' => [
+                        'class' => 'alert alert-danger'
+                    ]
+                ]);
+            }
+        }
+        else{
+            $this->redirect($this->Auth->redirectUrl());
+        }
+    }
 
+    public function logout()
+    {
+        $this->Flash->success('Logout Successfully !!', [
+            'params' => [
+                'class' => 'alert alert-success'
+            ]
+        ]);
+        return $this->redirect($this->Auth->logout());
+    }
     /**
      * Index method
      *
@@ -24,6 +66,10 @@ class AdminsController extends AppController
 
         $this->set(compact('admins'));
         $this->set('_serialize', ['admins']);
+    }
+    public function home()
+    {
+
     }
 
     /**

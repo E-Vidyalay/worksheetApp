@@ -43,7 +43,29 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+            'Form' => [
+                'userModel' => 'Admins',
+                'fields' => [
+                    'username' => 'username',
+                    'password' => 'password'
+                    ]
+                ]
+            ],
+            'loginRedirect' => [
+                'controller' => 'Admins',
+                'action' => 'home'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Pages',
+                'action' => 'home'
+            ],
+            'loginAction' => [
+                'controller' => 'Admins',
+                'action' => 'login'
+            ]
+        ]);
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
@@ -65,5 +87,11 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow('login');
+        $activeUser = $this->request->session()->read('Auth.User');
+        $this->set('activeUser',$activeUser);
     }
 }
