@@ -41,6 +41,8 @@ class ErrorController extends AppController
      */
     public function beforeFilter(Event $event)
     {
+        $activeUser = $this->request->session()->read('Auth.User');
+        $this->set('activeUser',$activeUser);
     }
 
     /**

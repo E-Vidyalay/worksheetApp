@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Handcraft Cards';
+$cakeDescription = 'WorkSheet';
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,7 +79,7 @@ $cakeDescription = 'Handcraft Cards';
                 </li>
                 <!-- /.dropdown -->
             </ul>
-                <?php echo $this->Html->link(_('<span class="navbar-brand">The Handcraft Cards</span>'),array('controller'=>'admins','action'=>'home'),array('escape' => false));
+                <?php echo $this->Html->link(_('<span class="navbar-brand">WorkSheet</span>'),array('controller'=>'admins','action'=>'home'),array('escape' => false));
                 ?>
         </div>
         <ul class="nav navbar-top-links navbar-right hidden-sm hidden-xs">

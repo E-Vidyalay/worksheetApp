@@ -31,7 +31,7 @@ class PagesController extends AppController
 {
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow('home');
+        $this->Auth->allow('display');
     }
     /**
      * Displays a view

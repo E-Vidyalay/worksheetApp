@@ -64,6 +64,10 @@ class AppController extends Controller
             'loginAction' => [
                 'controller' => 'Admins',
                 'action' => 'login'
+            ],
+            'flash'=>[
+                'element'=>'error',
+                'params' => ['class' => 'alert alert-danger']
             ]
         ]);
         /*
