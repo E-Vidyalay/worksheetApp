@@ -54,11 +54,19 @@ class TopicsController extends AppController
         if ($this->request->is('post')) {
             $topic = $this->Topics->patchEntity($topic, $this->request->getData());
             if ($this->Topics->save($topic)) {
-                $this->Flash->success(__('The topic has been saved.'));
+                $this->Flash->success('The topic has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The topic could not be saved. Please, try again.'));
+            $this->Flash->error('The topic could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $this->set(compact('topic'));
         $this->set('_serialize', ['topic']);
@@ -79,11 +87,19 @@ class TopicsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $topic = $this->Topics->patchEntity($topic, $this->request->getData());
             if ($this->Topics->save($topic)) {
-                $this->Flash->success(__('The topic has been saved.'));
+                $this->Flash->success('The topic has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The topic could not be saved. Please, try again.'));
+            $this->Flash->error('The topic could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $this->set(compact('topic'));
         $this->set('_serialize', ['topic']);
@@ -101,9 +117,17 @@ class TopicsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $topic = $this->Topics->get($id);
         if ($this->Topics->delete($topic)) {
-            $this->Flash->success(__('The topic has been deleted.'));
+            $this->Flash->success('The topic has been deleted.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
         } else {
-            $this->Flash->error(__('The topic could not be deleted. Please, try again.'));
+            $this->Flash->error('The topic could not be deleted. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
 
         return $this->redirect(['action' => 'index']);

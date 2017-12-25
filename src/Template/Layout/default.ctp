@@ -172,8 +172,6 @@ $cakeDescription = 'WorkSheet';
                         </li> -->
                     </ul>
                 </div>
-                <hr/>
-                <?=$this->Html->image('HandCraftCardsLogo.png',array('class'=>'hidden-sm hidden-xs','style'=>'display: block;margin-left: auto;margin-right: auto;','width'=>'150','height'=>'150'))?>
                 <!-- /.sidebar-collapse -->
             </div>
     </nav>

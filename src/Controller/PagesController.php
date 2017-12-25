@@ -32,6 +32,29 @@ class PagesController extends AppController
     public function beforeFilter(Event $event)
     {
         $this->Auth->allow('display');
+        $this->loadModel('Ebooks');
+        $this->loadModel('Languages');
+        $this->loadModel('Topics');
+        $this->loadModel('SubTopics');
+        $this->paginate = [
+            'contain' => ['Languages', 'SubTopics' =>[
+            'Topics']],
+            'order' => [
+              'Ebooks.uploaded_at' => 'asc'
+                ]
+            ];
+        $ebooksAll = $this->paginate($this->Ebooks);
+        $languages=$this->Languages->find('all');
+        $topics=$this->Topics->find('all');
+        $subtopics=$this->SubTopics->find('all');
+        $this->set('ebooksAll',$ebooksAll);
+        $this->set('languages',$languages);
+        $this->set('topics',$topics);
+        $this->set('subtopics',$subtopics);
+        $this->set('_serialize', ['ebooksAll']);
+        $this->set('_serialize', ['languages']);
+        $this->set('_serialize', ['topics']);
+        $this->set('_serialize', ['subtopics']);
     }
     /**
      * Displays a view

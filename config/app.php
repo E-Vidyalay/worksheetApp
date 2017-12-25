@@ -259,7 +259,13 @@ return [
 
             'url' => env('DATABASE_URL', null),
         ],
-
+        'elastic' => [
+            'className' => 'Cake\ElasticSearch\Datasource\Connection',
+            'driver' => 'Cake\ElasticSearch\Datasource\Connection',
+            'host' => 'localhost',
+            'port' => 9200,
+            'index' => 'my_apps_index',
+        ],
         /**
          * The test connection is used during the test suite.
          */

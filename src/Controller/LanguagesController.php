@@ -54,11 +54,19 @@ class LanguagesController extends AppController
         if ($this->request->is('post')) {
             $language = $this->Languages->patchEntity($language, $this->request->getData());
             if ($this->Languages->save($language)) {
-                $this->Flash->success(__('The language has been saved.'));
+                $this->Flash->success('The language has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The language could not be saved. Please, try again.'));
+            $this->Flash->error('The language could not be saved. Please, try again.',
+                    ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $this->set(compact('language'));
         $this->set('_serialize', ['language']);
@@ -79,11 +87,19 @@ class LanguagesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $language = $this->Languages->patchEntity($language, $this->request->getData());
             if ($this->Languages->save($language)) {
-                $this->Flash->success(__('The language has been saved.'));
+                $this->Flash->success('The language has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The language could not be saved. Please, try again.'));
+            $this->Flash->error('The language could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $this->set(compact('language'));
         $this->set('_serialize', ['language']);
@@ -101,9 +117,17 @@ class LanguagesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $language = $this->Languages->get($id);
         if ($this->Languages->delete($language)) {
-            $this->Flash->success(__('The language has been deleted.'));
+            $this->Flash->success('The language has been deleted.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
         } else {
-            $this->Flash->error(__('The language could not be deleted. Please, try again.'));
+            $this->Flash->error('The language could not be deleted. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
 
         return $this->redirect(['action' => 'index']);

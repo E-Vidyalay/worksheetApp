@@ -13,6 +13,10 @@ use App\Controller\AppController;
 class EbooksController extends AppController
 {
 
+    public function initialize()  {
+        parent::initialize();
+        $this->loadComponent('Upload');    ## Load upload component for uploading images
+    }
     /**
      * Index method
      *
@@ -56,12 +60,40 @@ class EbooksController extends AppController
         $ebook = $this->Ebooks->newEntity();
         if ($this->request->is('post')) {
             $ebook = $this->Ebooks->patchEntity($ebook, $this->request->getData());
+            $book = $this->request->data['file_name'];
+            // pr($ebook);
+            // die();
+            if(isset($book['name']) && !empty($book["name"])){
+                $this->Upload->upload($book);
+                
+                if($this->Upload->uploaded) {
+                        $name=md5(time());
+                        $this->Upload->file_new_name_body = $name;
+                        $this->Upload->process('files/ebooks/');
+                        $ebookName = $this->Upload->file_dst_name;
+                        pr($ebookName);
+                        $ebook->file_name  = $ebookName;
+                        // pr($ebook);
+                        
+                        // pr('Upload done');
+                }
+              } else {
+                unset($this->request->data['file_name']); 
+              }
             if ($this->Ebooks->save($ebook)) {
-                $this->Flash->success(__('The ebook has been saved.'));
+                $this->Flash->success('The ebook has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ebook could not be saved. Please, try again.'));
+            $this->Flash->error('The ebook could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $languages = $this->Ebooks->Languages->find('list', ['limit' => 200]);
         $subTopics = $this->Ebooks->SubTopics->find('list', ['limit' => 200]);
@@ -83,12 +115,40 @@ class EbooksController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $ebook = $this->Ebooks->patchEntity($ebook, $this->request->getData());
+            $book = $this->request->data['file_name'];
+            // pr($ebook);
+            // die();
+            if(isset($book['name']) && !empty($book["name"])){
+                $this->Upload->upload($book);
+                
+                if($this->Upload->uploaded) {
+                        $name=md5(time());
+                        $this->Upload->file_new_name_body = $name;
+                        $this->Upload->process('files/ebooks/');
+                        $ebookName = $this->Upload->file_dst_name;
+                        pr($ebookName);
+                        $ebook->file_name  = $ebookName;
+                        // pr($ebook);
+                        
+                        // pr('Upload done');
+                }
+            } else {
+            unset($this->request->data['file_name']); 
+            }
             if ($this->Ebooks->save($ebook)) {
-                $this->Flash->success(__('The ebook has been saved.'));
+                $this->Flash->success('The ebook has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ebook could not be saved. Please, try again.'));
+            $this->Flash->error('The ebook could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $languages = $this->Ebooks->Languages->find('list', ['limit' => 200]);
         $subTopics = $this->Ebooks->SubTopics->find('list', ['limit' => 200]);
@@ -108,9 +168,17 @@ class EbooksController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $ebook = $this->Ebooks->get($id);
         if ($this->Ebooks->delete($ebook)) {
-            $this->Flash->success(__('The ebook has been deleted.'));
+            $this->Flash->success('The ebook has been deleted.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
         } else {
-            $this->Flash->error(__('The ebook could not be deleted. Please, try again.'));
+            $this->Flash->error('The ebook could not be deleted. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
 
         return $this->redirect(['action' => 'index']);

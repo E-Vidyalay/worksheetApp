@@ -3,22 +3,37 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Topics'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Sub Topics'), ['controller' => 'SubTopics', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Sub Topic'), ['controller' => 'SubTopics', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="topics form large-9 medium-8 columns content">
-    <?= $this->Form->create($topic) ?>
-    <fieldset>
-        <legend><?= __('Add Topic') ?></legend>
-        <?php
-            echo $this->Form->control('topic_name');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<br/>
+<div class="ev-alert">
+    <?=$this->Flash->render()?>
+</div>
+<div class="row">
+    <div class="col-lg-5">
+        <h2>Add Topic</h2>
+    </div>
+    <div class="col-lg-7" style="text-align: right">
+        <div class="btn-group">
+            <?= $this->Html->link(__('List Topics'), ['action' => 'index'],['class'=>'btn btn-primary']) ?>
+            <?= $this->Html->link(__('List Sub Topics'), ['controller' => 'SubTopics', 'action' => 'index'],['class'=>'btn btn-default']) ?>
+            <?= $this->Html->link(__('New Sub Topic'), ['controller' => 'SubTopics', 'action' => 'add'],['class'=>'btn btn-info']) ?>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+                <?= $this->Form->create($topic) ?>
+                <label for="topic_name" class="control-label">Topic Name <i>(required)</i></label>
+                <div class="form-group">
+                    <?= $this->Form->control('topic_name',['type'=>'text','class'=>'form-control','required','label'=>false,'placeholder'=>'Topic Name'])?>
+                </div>
+                <?= $this->Form->button('Submit',['type'=>'submit','div'=>false,'label'=>false,'class'=>'btn btn-md btn-primary']) ?>
+                <?= $this->Form->end() ?>
+            </div>
+        </div>
+    </div>
 </div>

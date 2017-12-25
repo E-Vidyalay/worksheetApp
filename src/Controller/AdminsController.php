@@ -16,7 +16,7 @@ class AdminsController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['login','add']);
+        $this->Auth->allow(['login']);
     }
     
     public function login()
@@ -50,7 +50,7 @@ class AdminsController extends AppController
     {
         $this->Flash->success('Logout Successfully !!', [
             'params' => [
-                'class' => 'alert alert-success'
+                'class' => 'alert alert-box'
             ]
         ]);
         return $this->redirect($this->Auth->logout());

@@ -51,11 +51,16 @@ class ComposerStaticInitf55c32272b77deede814d529b6e57baf
         ),
         'M' => 
         array (
+            'Muffin\\Tags\\' => 12,
             'Migrations\\' => 11,
         ),
         'J' => 
         array (
             'JsonSchema\\' => 11,
+        ),
+        'E' => 
+        array (
+            'Elastica\\' => 9,
         ),
         'D' => 
         array (
@@ -69,6 +74,7 @@ class ComposerStaticInitf55c32272b77deede814d529b6e57baf
             'Composer\\CaBundle\\' => 18,
             'Composer\\' => 9,
             'Cake\\Test\\' => 10,
+            'Cake\\ElasticSearch\\' => 19,
             'Cake\\Composer\\' => 14,
             'Cake\\Chronos\\' => 13,
             'Cake\\' => 5,
@@ -162,6 +168,10 @@ class ComposerStaticInitf55c32272b77deede814d529b6e57baf
         array (
             0 => __DIR__ . '/..' . '/robmorgan/phinx/src/Phinx',
         ),
+        'Muffin\\Tags\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/muffin/tags/src',
+        ),
         'Migrations\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/migrations/src',
@@ -169,6 +179,10 @@ class ComposerStaticInitf55c32272b77deede814d529b6e57baf
         'JsonSchema\\' => 
         array (
             0 => __DIR__ . '/..' . '/justinrainbow/json-schema/src/JsonSchema',
+        ),
+        'Elastica\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ruflin/elastica/lib/Elastica',
         ),
         'DebugKit\\Test\\Fixture\\' => 
         array (
@@ -197,6 +211,10 @@ class ComposerStaticInitf55c32272b77deede814d529b6e57baf
         'Cake\\Test\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/cakephp/tests',
+        ),
+        'Cake\\ElasticSearch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cakephp/elastic-search/src',
         ),
         'Cake\\Composer\\' => 
         array (

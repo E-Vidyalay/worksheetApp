@@ -65,8 +65,7 @@ class EbooksTable extends Table
 
         $validator
             ->dateTime('uploaded_at')
-            ->requirePresence('uploaded_at', 'create')
-            ->notEmpty('uploaded_at');
+            ->allowEmpty('uploaded_at','create');
 
         $validator
             ->requirePresence('file_name', 'create')

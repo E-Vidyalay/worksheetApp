@@ -33,7 +33,7 @@ class TopicsTable extends Table
         parent::initialize($config);
 
         $this->setTable('topics');
-        $this->setDisplayField('id');
+        $this->setDisplayField('topic_name');
         $this->setPrimaryKey('id');
 
         $this->hasMany('SubTopics', [

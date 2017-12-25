@@ -57,11 +57,19 @@ class SubTopicsController extends AppController
         if ($this->request->is('post')) {
             $subTopic = $this->SubTopics->patchEntity($subTopic, $this->request->getData());
             if ($this->SubTopics->save($subTopic)) {
-                $this->Flash->success(__('The sub topic has been saved.'));
+                $this->Flash->success('The sub topic has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The sub topic could not be saved. Please, try again.'));
+            $this->Flash->error('The sub topic could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $topics = $this->SubTopics->Topics->find('list', ['limit' => 200]);
         $this->set(compact('subTopic', 'topics'));
@@ -83,11 +91,19 @@ class SubTopicsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $subTopic = $this->SubTopics->patchEntity($subTopic, $this->request->getData());
             if ($this->SubTopics->save($subTopic)) {
-                $this->Flash->success(__('The sub topic has been saved.'));
+                $this->Flash->success('The sub topic has been saved.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The sub topic could not be saved. Please, try again.'));
+            $this->Flash->error('The sub topic could not be saved. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
         $topics = $this->SubTopics->Topics->find('list', ['limit' => 200]);
         $this->set(compact('subTopic', 'topics'));
@@ -106,9 +122,17 @@ class SubTopicsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $subTopic = $this->SubTopics->get($id);
         if ($this->SubTopics->delete($subTopic)) {
-            $this->Flash->success(__('The sub topic has been deleted.'));
+            $this->Flash->success('The sub topic has been deleted.',
+                        ['params' => [
+                            'class' => 'alert alert-success'
+                            ]
+                        ]);
         } else {
-            $this->Flash->error(__('The sub topic could not be deleted. Please, try again.'));
+            $this->Flash->error('The sub topic could not be deleted. Please, try again.',
+                        ['params' => [
+                            'class' => 'alert alert-danger'
+                            ]
+                        ]);
         }
 
         return $this->redirect(['action' => 'index']);

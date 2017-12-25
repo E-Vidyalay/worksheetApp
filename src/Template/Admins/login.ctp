@@ -14,8 +14,7 @@ $this->layout='login';
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <?php echo $this->Html->image('HandCraftCardsLogo.png',array('style'=>'display: block;margin-left: auto;margin-right: auto;','width'=>'150','height'=>'150')); ?>
-                        <h4 style="text-align:center">The Handcraft Cards | Admin Login</h4>
+                        <h4 style="text-align:center">Worksheet App | Admin Login</h4>
                     </div>
                     <div class="panel-body">
                         <?php echo $this->Form->create() ?>
@@ -63,7 +62,7 @@ $this->layout='login';
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="#"><i class="fa fa-arrow-left fa-fw"></i> Back to The Handcraft Cards </a>
+                        <?php echo $this->Html->link('<i class="fa fa-arrow-left fa-fw"></i> Back to Worksheet App',array('controller'=>'pages','action'=>'display'),array('escape'=>false)); ?>
                     </div>
                 </div>
                 <div class="ev-alert">

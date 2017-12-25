@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Handcraft Cards';
+$cakeDescription = 'Worksheet App';
 ?>
 <!DOCTYPE html>
 <html>

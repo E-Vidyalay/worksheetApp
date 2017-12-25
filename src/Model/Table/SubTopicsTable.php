@@ -34,7 +34,7 @@ class SubTopicsTable extends Table
         parent::initialize($config);
 
         $this->setTable('sub_topics');
-        $this->setDisplayField('id');
+        $this->setDisplayField('sub_topic_name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Topics', [
