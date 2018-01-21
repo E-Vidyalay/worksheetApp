@@ -61,21 +61,14 @@ class EbooksController extends AppController
         if ($this->request->is('post')) {
             $ebook = $this->Ebooks->patchEntity($ebook, $this->request->getData());
             $book = $this->request->data['file_name'];
-            // pr($ebook);
-            // die();
             if(isset($book['name']) && !empty($book["name"])){
                 $this->Upload->upload($book);
-                
                 if($this->Upload->uploaded) {
                         $name=md5(time());
                         $this->Upload->file_new_name_body = $name;
                         $this->Upload->process('files/ebooks/');
                         $ebookName = $this->Upload->file_dst_name;
-                        pr($ebookName);
                         $ebook->file_name  = $ebookName;
-                        // pr($ebook);
-                        
-                        // pr('Upload done');
                 }
               } else {
                 unset($this->request->data['file_name']); 
@@ -86,7 +79,6 @@ class EbooksController extends AppController
                             'class' => 'alert alert-success'
                             ]
                         ]);
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error('The ebook could not be saved. Please, try again.',
@@ -184,3 +176,4 @@ class EbooksController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 }
+?>

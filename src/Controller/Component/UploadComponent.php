@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
@@ -2643,6 +2641,7 @@ class UploadComponent extends Component {
             case 'g':
                 $size *= 1024;
             case 'm':
+                $size=substr($size, 0, -1);
                 $size *= 1024;
             case 'k':
                 $size *= 1024;
@@ -4722,5 +4721,4 @@ class UploadComponent extends Component {
         return true;
     }
 }
-
 ?>

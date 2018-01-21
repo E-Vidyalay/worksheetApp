@@ -98,6 +98,9 @@ $cakeDescription = 'WorkSheet';
                                 <h4><?php echo $activeUser['username'];?></h4>
                             </a>
                         </li>
+                        <li><?php
+                                echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fa fa-user fa-fw')) . " Edit Profile",array('controller' => 'admins', 'action' => 'edit',$activeUser['id']),array('escape' => false));?>
+                        </li>
                         <li class="divider"></li>
                         <li><?php
                                 echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fa fa-sign-out fa-fw')) . " Logout",array('controller' => 'admins', 'action' => 'logout'),array('escape' => false));?>
@@ -159,7 +162,7 @@ $cakeDescription = 'WorkSheet';
                                 </li>
                             </ul>
                         </li>
-                        <!-- <li>
+                        <li>
                             <a href="#"><i class="fa fa-gears fa-fw"></i> Admin Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
@@ -169,7 +172,7 @@ $cakeDescription = 'WorkSheet';
                                     <?php echo $this->Html->link($this->Html->tag('i', '', array('class' => 'fa fa-plus fa-fw')) . " Add Admin User",array('controller'=>'admins','action'=>'add'),array('escape' => false)); ?>
                                 </li>
                             </ul>
-                        </li> -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
