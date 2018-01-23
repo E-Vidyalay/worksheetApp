@@ -23,7 +23,7 @@
 </div>
 <hr>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-heading">
             </div>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <?= $this->Form->control('language_id', ['options' => $languages,'type'=>'select','required','label'=>false,'class'=>'form-control','empty'=>'-select-'])?>
                     </div>
-                    <label for="sub_topic_id" class="control-label">Sub Topic <i>(required)</i></label>
+                    <label for="sub_topic_id" class="control-label">Topic - Sub Topic <i>(required)</i></label>
                     <div class="form-group">
                         <?= $this->Form->control('sub_topic_id', ['options' => $subTopics,'type'=>'select','required','label'=>false,'class'=>'form-control','empty'=>'-select-'])?>
                     </div>
@@ -56,9 +56,10 @@
                     <label for="file_description" class="control-label">Product Name <i>(required)</i></label>
                     <div class="form-group">
                         <?= $this->Form->control('file_description',[
-                            'required',
                             'type'=>'textarea',
                             'label'=>false,
+                            'required'=>false,
+                            'autofocus',
                             'class'=>'form-control'
                         ])?>
                     </div>

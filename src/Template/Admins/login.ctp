@@ -22,7 +22,7 @@ $this->layout='login';
                                 <div class="form-group">
                                     <?php echo $this->Form->input('username',array(
                                             'class'=>'form-control',
-                                            'placeholder'=>'Email',
+                                            'placeholder'=>'Username',
                                             'type'=>'text',
                                             'required',
                                             'autofocus',

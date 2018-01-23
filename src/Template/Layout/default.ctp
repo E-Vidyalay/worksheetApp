@@ -18,7 +18,7 @@ $cakeDescription = 'WorkSheet';
 <!DOCTYPE html>
 <html>
 <head>
-    <?= $this->Html->charset() ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?= $cakeDescription ?>:
@@ -38,12 +38,83 @@ $cakeDescription = 'WorkSheet';
         echo $this->Html->css('buttons.bootstrap.min.css');
         echo $this->Html->css('colpick');
         echo $this->Html->css('bootstrap-dialog');
+        echo $this->Html->script('pramukhime-common');
+        echo $this->Html->script('tiny_mce/tiny_mce.js');
         echo $this->Html->meta('favicon.ico','/favicon.ico',array('type'=>'icon'));
     ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript">
+            //piresourcebase = 'tiny_mce/plugins/pramukhime/';
+            tinyMCE.init({
+                // General options
+                mode : "textareas",
+                theme: "advanced",
+                plugins : "table,advhr,advimage,advlink,inlinepopups,searchreplace,print,paste,directionality,fullscreen,pramukhime",
+                //auto_focus: 'typingarea',
+                // Theme options
+                theme_advanced_buttons1: "pramukhime,pramukhimeclick,pramukhimeconvert,pramukhimehelp,print,undo,redo,fontselect,fontsizeselect,bold,italic,underline,forecolor,backcolor,|,link,unlink,image,|,justifyleft,justifycenter,justifyright,bullist,numlist,outdent,indent,|,code,ltr,rtl",
+                theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,tablecontrols,|,sub,sup,blockquote,advhr,anchor,cleanup,removeformat,|,fullscreen",
+                theme_advanced_toolbar_location : "top",
+                theme_advanced_toolbar_align : "left",
+                theme_advanced_statusbar_location : "bottom",
+                theme_advanced_resizing: true,
+                convert_urls : false,
+                theme_advanced_resizing_use_cookie : false,
+                content_css : "/worksheetApp/css/ptparea.css",
+                pramukhime_language: [
+                    {
+                        jsfile:'pramukhindic.js',
+                        kbclassname:'PramukhIndic',
+                        kbtitle:'Pramukh Indic',
+                        languagelist:[
+
+                        {language: 'gujarati', title:'Gujarati'},
+                        {language: 'hindi', title:'Hindi'},
+
+                        ]
+                        },
+                    { 
+                        kbtitle:'', 
+                        title:'English' 
+                    }
+                ]
+            });
+            function bodyload() {
+                var lang = (getCookie('pramukhime_language', ':english')).split(':');
+                if(typeof pramukhIME != 'undefined') {
+                    pramukhIME.setLanguage(lang[1], lang[0]);
+                    pramukhIME.onLanguageChange(function(l,k,c){setCookie('pramukhime_language',k+':'+l,10);},'cookie');
+                }
+            }
+        </script>
+        
+        <style type="text/css">
+            body, * {font-family:helvetica, sans-serif; font-size:12px;}
+            img {border:0px;}
+            .page { width:100%; margin:0 auto;}
+            #fblogo a,#gplogo a, #twtlogo a {height:20px; width:20px; padding-left:15px; text-decoration:none;}
+            #fblogo {height:20px; width:20px; background:transparent url('tiny_mce/plugins/pramukhime/img/pramukhime-icon.png') 0px -402px no-repeat;}
+            #gplogo {height:20px; width:20px; background:transparent url('tiny_mce/plugins/pramukhime/img/pramukhime-icon.png') 0px -422px no-repeat;}
+            #twtlogo {height:20px; width:20px; background:transparent url('tiny_mce/plugins/pramukhime/img/pramukhime-icon.png') 0px -442px no-repeat;}
+            .header {height:50px; border-bottom:2px solid #FF6600; background:transparent url('tiny_mce/plugins/pramukhime/img/pramukhime-icon.png') 0px -1342px no-repeat; padding-left:55px; }
+            .divleft { float:left;}
+            .headerright { text-align:right;}
+            .title { font-size:20px; color:#FF6600; font-weight:bold; }
+            .clear {clear:both;}
+            .editor {width:100%; border:1px solid #bbb; border-collapse:collapse; }
+            .editortoolbar {background:#EEEEEE; height:26px; width:100%;border:1px solid #bbb; padding:0px;}
+            textarea { height:376px; padding:0px; border:0px; width:100%; overflow:auto;}
+            .bottom {border-top:2px solid #FF6600; padding-top:4px;}
+            .copyright {text-align:center;}
+            .big {font-size:14px;}
+            .bigger {font-size:16px;}
+            #pi_tips {list-style-type:none; margin:0px; padding:0px;display:none}
+            ul li.tipsmall {background-position: 0 0px; padding-left:20px; margin:0px; font-size:xx-small;}
+            ul li.tip {height:20px; margin:0px; padding-left:20px;background:transparent url('tiny_mce/plugins/pramukhime/img/pramukhime-icon.png') 0px -260px no-repeat;}
+        </style>
 </head>
 <body>
     <div id="wrapper">

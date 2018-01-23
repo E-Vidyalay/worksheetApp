@@ -88,7 +88,13 @@ class EbooksController extends AppController
                         ]);
         }
         $languages = $this->Ebooks->Languages->find('list', ['limit' => 200]);
-        $subTopics = $this->Ebooks->SubTopics->find('list', ['limit' => 200]);
+        $subTopicsRaw = $this->Ebooks->SubTopics->find('all',[
+    'contain' => ['Topics']]);
+        $subTopics=array();
+        foreach ($subTopicsRaw as $key) {
+            $subTopics[$key['id']]=$key['topic']['topic_name'].' - '.$key['sub_topic_name'];
+        }
+        //die();
         $this->set(compact('ebook', 'languages', 'subTopics'));
         $this->set('_serialize', ['ebook']);
     }

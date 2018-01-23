@@ -16,12 +16,10 @@
 $cakeDescription = 'WorkSheet';
 ?>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?= $this->Html->charset() ?>
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
@@ -37,11 +35,66 @@ $cakeDescription = 'WorkSheet';
         echo $this->Html->css('../bower_components/Ionicons/css/ionicons.min.css');
         echo $this->Html->css('../dist/css/AdminLTE.min.css');
         echo $this->Html->css('../dist/css/skins/_all-skins.min.css');
+        echo $this->Html->css('pramukhtypepad.css');
+        echo $this->Html->script('pramukhime.js');
+        echo $this->Html->script('pramukhindic.js');
+        echo $this->Html->script('pramukhime-common.js');
         // echo $this->Html->css('foundation-icons/foundation-icons.css');
         echo $this->Html->meta('favicon.ico','/favicon.ico',array('type'=>'icon'));
         // echo $this->Html->script('vendor/modernizr.min.js');
     ?>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script language="javascript" type="text/javascript">
+      pramukhIME.addLanguage(PramukhIndic);
+      pramukhIME.enable();
+      pramukhIME.onLanguageChange(scriptChangeCallback);
+      var lang = (getCookie('pramukhime_language',':english')).split(':');
+      pramukhIME.setLanguage(lang[1], lang[0]);
+      var ul = document.getElementById('pi_tips');
+
+      var elem, len = ul.childNodes.length, i;
+      for (i = 0; i < len; i++) {
+          elem = ul.childNodes[i];
+          if (elem.tagName && elem.tagName.toLowerCase() == 'li') {
+              tips.push(elem.innerHTML);
+          }
+      }
+      for (i = len - 1; i > 1; i--) {
+          ul.removeChild(ul.childNodes[i]);
+      }
+      ul.childNodes[i].className = 'tip'; // replace small tip text with large
+
+      showNextTip(); // call for first time
+      setTimeout('turnOffTip()', 90000); // show tips for 1.5 minutes
+            document.getElementById('typingarea').focus();
+
+            // set width and height of dialog
+            var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight || e.clientHeight || g.clientHeight;
+            var elem = document.getElementById('dialog');
+            elem.style.top = ((y - 550) / 2) + 'px';
+            elem.style.left = ((x - 700) / 2) + 'px';
+            
+    </script>
+    <script type="text/javascript">
+      // Load the Google Transliterate API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+      function onLoad() {     
+  var options = {
+          sourceLanguage: 'en',
+          destinationLanguage: ['gu'],        
+          transliterationEnabled: true
+        };  
+     
+var control = new google.elements.transliteration.TransliterationControl(options);  
+var ids = ["guj-in"];  
+  control.makeTransliteratable(ids);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
     <style type="text/css">
         .ev-alert{
             right:20px;

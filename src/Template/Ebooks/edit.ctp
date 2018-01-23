@@ -35,7 +35,7 @@
 </div>
 <hr>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-10">
         <div class="panel panel-default">
             <div class="panel-heading">
             </div>
@@ -56,7 +56,6 @@
                     <label for="file_name" class="control-label">Ebook Upload <i>(required)</i></label>
                     <div class="form-group">
                         <?= $this->Form->control('file_name',[
-                            'required',
                             'type'=>'file',
                             'label'=>false,
                             'class'=>'btn btn-sm btn-default'
@@ -65,9 +64,10 @@
                     <label for="file_description" class="control-label">Product Name <i>(required)</i></label>
                     <div class="form-group">
                         <?= $this->Form->control('file_description',[
-                            'required',
                             'type'=>'textarea',
                             'label'=>false,
+                            'required'=>false,
+                            'autofocus',
                             'class'=>'form-control'
                         ])?>
                     </div>
