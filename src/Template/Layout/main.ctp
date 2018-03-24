@@ -270,51 +270,115 @@ var ids = ["guj-in"];
     <?= $this->Html->script('../dist/js/demo.js')?>
     <?= $this->Html->script('jquery.easyPaginate.js')?>
     <?= $this->Html->script('list.js')?>
+    <?= $this->Html->script('jquery.isotope.min.js')?>
     
     <script>
           $(document).ready(function(){
             setTimeout(function(){
                 $('.alert').fadeOut(800);
             },2000);
-            var bookList = new List('book-list', {
-              valueNames: ['name','language','topic','sub-topic'],
-              page: 3,
-              pagination: true
-            });
-            $('div.tags').find('input:checkbox').click( function () {
-                // $('.results > li').hide();
-                $('div.tags').find('input:checked').each(function () {
-                  console.log($(this).attr('rel'));
-                  var languageString=$(this).attr('rel');
-                  var topicString=$(this).attr('rel');
-                  var subTopicString=$(this).attr('rel');
-                  // console.log($('.results > li[data-language='+$(this).attr('rel')+']'));
-                    // $('.results > li[data-language='+$(this).attr('rel')+']').show();
-                    // $('.results > li[data-topic='+$(this).attr('rel')+']').show();
-                    // $('.results > li[data-sub-topic='+$(this).attr('rel')+']').show();
-                    bookList.filter(function(item) {
-                      console.log(item['_values']['sub-topic']);
-                      if (item.values().language === languageString || item.values().topic === topicString || item['_values']['sub-topic'] === subTopicString) {
-                         return true;
-                      } else {
-                         return false;
-                      }
-                    });
-                });
-                // console.log($("input:checkbox"));
-                if($("input:checkbox").length===$("input:checkbox:not(:checked)").length){
-                  // $('.results > li').show();
-                  bookList.filter();
-                }
-                // console.log($("input:checkbox:not(:checked)"));
-              })
-            $("#reset-filter").click(function(){
-              bookList.filter();
-              $('input:checkbox').each(function(){
-                $(this)[0].checked=false  
-              });
 
+            var $container = $('#results'),
+                $checkboxeslanugage = $('input.check-languages');
+                $checkboxestopic = $('input.check-topics');
+                $checkboxessubtopic = $('input.check-subtopics');
+            console.log($checkboxeslanugage);
+            console.log($checkboxestopic);
+            console.log($checkboxessubtopic);
+            $container.isotope({
+              itemSelector: '.thumbnail'
             });
+            console.log($container);
+            
+            $checkboxeslanugage.change(function(){
+              // get checked checkboxes values
+              var filters = [];
+              $checkboxeslanugage.filter(':checked').each(function(){
+                console.log(this.value);
+                filters.push( this.value );
+              });
+              // ['.red', '.blue'] -> '.red, .blue'
+              filters = filters.join(', ');
+              $container.isotope({ filter: filters });
+            });
+
+            $checkboxestopic.change(function(){
+              // get checked checkboxes values
+              var filters = [];
+              $checkboxestopic.filter(':checked').each(function(){
+                console.log(this.value);
+                filters.push( this.value );
+              });
+              // ['.red', '.blue'] -> '.red, .blue'
+              filters = filters.join(', ');
+              $container.isotope({ filter: filters });
+            });
+
+            $checkboxessubtopic.change(function(){
+              // get checked checkboxes values
+              var filters = [];
+              $checkboxessubtopic.filter(':checked').each(function(){
+                console.log(this.value);
+                filters.push( this.value );
+              });
+              // ['.red', '.blue'] -> '.red, .blue'
+              filters = filters.join(', ');
+              $container.isotope({ filter: filters });
+            });
+            
+            var $items = $container.children();
+
+            // var bookList = new List('book-list', {
+            //   valueNames: ['name','language','topic','sub-topic'],
+            //   page: 3,
+            //   pagination: true
+            // });
+
+            // $('div.tags').find('input:checkbox').click( function () {
+            //     // $('.results > li').hide();
+            //     $('div.tags').find('input:checked').each(function () {
+            //       console.log($(this).attr('rel'));
+            //       var languageString=$(this).attr('rel');
+            //       var topicString=$(this).attr('rel');
+            //       var subTopicString=$(this).attr('rel');
+
+            //       // console.log($('.results > li[data-language='+$(this).attr('rel')+']'));
+            //         // $('.results > li[data-language='+$(this).attr('rel')+']').show();
+            //         // $('.results > li[data-topic='+$(this).attr('rel')+']').show();
+            //         // $('.results > li[data-sub-topic='+$(this).attr('rel')+']').show();
+            //         bookList.filter(function(item) {
+            //           console.log(item['_values']['sub-topic']);
+            //           if (item.values().language === languageString || item.values().topic === topicString || item['_values']['sub-topic'] === subTopicString) {
+            //              return true;
+            //           } 
+            //           else if (item.values().language === languageString && item.values().topic === topicString && item['_values']['sub-topic'] === subTopicString){
+            //             return true;
+            //           }
+            //           else if(item.values().language === languageString && item.values().topic === topicString || item['_values']['sub-topic'] === subTopicString){
+            //             return true;
+            //           }
+            //           else if(item.values().language === languageString || item.values().topic === topicString && item['_values']['sub-topic'] === subTopicString){
+            //             return true;
+            //           }
+            //           else {
+            //              return false;
+            //           }
+            //         });
+            //     });
+            //     // console.log($("input:checkbox"));
+            //     if($("input:checkbox").length===$("input:checkbox:not(:checked)").length){
+            //       // $('.results > li').show();
+            //       bookList.filter();
+            //     }
+            //     // console.log($("input:checkbox:not(:checked)"));
+            //   })
+            // $("#reset-filter").click(function(){
+            //   bookList.filter();
+            //   $('input:checkbox').each(function(){
+            //     $(this)[0].checked=false  
+            //   });
+
+            // });
         });
     </script>
     <script>

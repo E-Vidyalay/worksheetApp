@@ -1,6 +1,6 @@
 body, * {font-family:verdana, arial, helvetica, sans-serif; font-size:13px;}
 img {border:0px;}
-.page { width:100%; margin:0 auto;}
+.page {margin:0 auto;}
 #fblogo a,#gplogo a, #twtlogo a {height:20px; width:20px; padding-left:15px; text-decoration:none;}
 #fblogo {height:20px; width:20px; background:transparent url('../img/pramukhime-icon.png') 0px -402px no-repeat;}
 #gplogo {height:20px; width:20px; background:transparent url('../img/pramukhime-icon.png') 0px -422px no-repeat;}

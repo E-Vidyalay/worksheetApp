@@ -74,7 +74,7 @@ function createBlob($stringPath=null){
                                 <?php //pr($languages);
                                   foreach($languages as $langauge){
                                 ?>
-                                  <div class="checkbox"><label><input type="checkbox" rel="<?=$langauge->language?>"/><?=$langauge->language?></label></div>
+                                  <div class="checkbox"><label><input type="checkbox" class="check-languages" rel="<?=$langauge->language?>" value=".<?=$langauge->language?>"/><?=$langauge->language?></label></div>
                                 <?php }?>
                               </div>
                               <!-- <div class="checkbox"><label><input type="checkbox" rel="category-two"/> Category Two</label></div>
@@ -89,7 +89,7 @@ function createBlob($stringPath=null){
                                 <?php //pr($topics);
                                   foreach($topics as $topic){
                                 ?>
-                                <div class="checkbox"><label><input type="checkbox" rel="<?=$topic->topic_name?>"/><?=$topic->topic_name?></label></div>
+                                <div class="checkbox"><label><input type="checkbox" class="check-topics" rel="<?=$topic->topic_name?>" value=".<?=$topic->topic_name?>"/><?=$topic->topic_name?></label></div>
                                 <?php }?>
                               </div>
                               <!-- <div class="checkbox"><label><input type="checkbox" rel="topic-two"/>Topic Two</label></div>
@@ -97,14 +97,14 @@ function createBlob($stringPath=null){
                               <div class="checkbox"><label><input type="checkbox" rel="topic-four"/>Topic Four</label></div>
                               <div class="checkbox"><label><input type="checkbox" rel="topic-five"/>Topic Five</label></div> -->
                             </div>
-                            <div class="form-group tags topics">
+                            <div class="form-group tags subtopics">
                               <a href="#sub-topics-side" type="button" class="pull-right" data-toggle="collapse"><i class="fa fa-minus"></i></a>
                               <h4>Sub Topics</h4>
                               <div id="sub-topics-side" class="collapse in">
                                 <?php //pr($subtopics);
                                   foreach($subtopics as $subtopic){
                                 ?>
-                                <div class="checkbox"><label><input type="checkbox" rel="<?=$subtopic->sub_topic_name?>"/><?=$subtopic->sub_topic_name?></label></div>
+                                <div class="checkbox"><label><input type="checkbox" class="check-subtopics" rel="<?=$subtopic->sub_topic_name?>" value=".<?=$subtopic->sub_topic_name?>"/><?=$subtopic->sub_topic_name?></label></div>
                                 <?php }?>
                               </div>
                               <!-- <div class="checkbox"><label><input type="checkbox" rel="topic-two"/>Topic Two</label></div>
@@ -142,7 +142,7 @@ function createBlob($stringPath=null){
                 <div class="row margin-bottom" id="book-list">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    <input type="text" class="search form-control" placeholder="Search by Book Titles, Langauge, Topic and Sub Topic">
+                    <input id="guj-in" type="text" class="search form-control" placeholder="Search by Book Titles, Langauge, Topic and Sub Topic">
                   </div>
                   <div class="row">
                     <div class="col-md-12">
@@ -166,9 +166,9 @@ function createBlob($stringPath=null){
                   </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <ul style="list-style-type: none;padding: 0;margin: 0;" class="list results">
+                        <ul style="list-style-type: none;padding: 0;margin: 0;" class="list results" id="results">
                         <?php foreach ($ebooksAll as $book):?>
-                                <li class="thumbnail col-sm-4" data-language="<?=$book->language->language?>" data-topic="<?=$book->sub_topic->topic->topic_name?>" data-sub-topic="<?=$book->sub_topic->sub_topic_name?>">
+                                <li class="thumbnail col-sm-4 <?=$book->language->language?> <?=$book->sub_topic->topic->topic_name?> <?=$book->sub_topic->sub_topic_name?>" data-language="<?=$book->language->language?>" data-topic="<?=$book->sub_topic->topic->topic_name?>" data-sub-topic="<?=$book->sub_topic->sub_topic_name?>">
                                     <?="<img class='img-responsive' src='data:image/png;base64,".base64_encode(createBlob(WWW_ROOT.'files/ebooks/'.$book->file_name))."'/>"?>
                                     <div class="caption">
                                         <h3 class="name"><?=$book->book_title?></h3>
